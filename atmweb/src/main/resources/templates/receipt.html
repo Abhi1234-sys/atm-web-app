@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Transaction Receipt</title>
+
+    <style>
+
+        body{
+        background:#1a1a1a;
+        font-family:Arial;
+        }
+
+        .box{
+        width:400px;
+        margin:auto;
+        margin-top:120px;
+        background:#333;
+        padding:25px;
+        border-radius:10px;
+        }
+
+        .screen{
+        background:#0a3d62;
+        padding:20px;
+        color:white;
+        border-radius:8px;
+        text-align:center;
+        }
+
+        button{
+        margin-top:20px;
+        padding:10px;
+        background:#003399;
+        color:white;
+        border:none;
+        cursor:pointer;
+        }
+
+        button:hover{
+        background:#0055cc;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+    <div class="screen">
+
+        <h2>Transaction Receipt</h2>
+
+        <p th:text="${receipt}"></p>
+
+        <h3>Balance: ₹ <span th:text="${balance}"></span></h3>
+
+        <a href="/dashboard">
+            <button>Back to ATM</button>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

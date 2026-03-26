@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>ATM Dashboard</title>
+
+    <style>
+
+        body{
+            background:#1a1a1a;
+            font-family:Arial;
+        }
+
+        .atm{
+            width:900px;
+            margin:auto;
+            margin-top:50px;
+            background:#333;
+            padding:25px;
+            border-radius:15px;
+        }
+
+        .screen{
+            background:#0a3d62;
+            padding:25px;
+            border-radius:10px;
+            color:white;
+        }
+
+        h2{
+            text-align:center;
+        }
+
+        .grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:20px;
+            margin-top:20px;
+        }
+
+        .card{
+            background:white;
+            color:#003399;
+            padding:15px;
+            border-radius:8px;
+        }
+
+        button{
+            background:#003399;
+            color:white;
+            border:none;
+            padding:8px 15px;
+            margin-top:8px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#0055cc;
+        }
+
+        input{
+            width:90%;
+            padding:7px;
+            margin-top:5px;
+        }
+
+        .history{
+            margin-top:20px;
+            background:white;
+            color:#003399;
+            padding:15px;
+            border-radius:8px;
+        }
+
+        .logout{
+            margin-top:15px;
+            text-align:center;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="atm">
+
+    <div class="screen">
+
+        <h2>🏦 ATM Dashboard</h2>
+
+        <!-- PROFILE SECTION -->
+
+        <div class="card">
+
+            <h3>Profile</h3>
+
+            <p>Name: <span th:text="${name}"></span></p>
+
+            <p>Card Number:
+                <span th:text="${card}"></span>
+            </p>
+
+            <p>Account Type: Savings</p>
+
+        </div>
+
+
+        <!-- BALANCE -->
+
+        <div class="card">
+
+            <h3>Current Balance</h3>
+
+            <h2>₹ <span th:text="${balance}"></span></h2>
+
+        </div>
+
+
+        <div class="grid">
+
+            <!-- WITHDRAW -->
+
+            <div class="card">
+
+                <h3>Withdraw</h3>
+
+                <form action="/withdraw" method="post">
+
+                    <input type="number"
+                           name="amount"
+                           placeholder="Enter amount"
+                           required>
+
+                    <br>
+
+                    <button type="submit">Withdraw</button>
+
+                </form>
+
+            </div>
+
+
+            <!-- DEPOSIT -->
+
+            <div class="card">
+
+                <h3>Deposit</h3>
+
+                <form action="/deposit" method="post">
+
+                    <input type="number"
+                           name="amount"
+                           placeholder="Enter amount"
+                           required>
+
+                    <br>
+
+                    <button type="submit">Deposit</button>
+
+                </form>
+
+            </div>
+
+
+            <!-- TRANSFER -->
+
+            <div class="card">
+
+                <h3>Transfer</h3>
+
+                <form action="/transfer" method="post">
+
+                    <input type="text"
+                           name="account"
+                           placeholder="Recipient Account"
+                           required>
+
+                    <br>
+
+                    <input type="number"
+                           name="amount"
+                           placeholder="Amount"
+                           required>
+
+                    <br>
+
+                    <button type="submit">Transfer</button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- TRANSACTION HISTORY -->
+
+        <div class="history">
+
+            <h3>Transaction History</h3>
+
+            <ul>
+
+                <li th:each="t : ${history}"
+                    th:text="${t}">
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- LOGOUT -->
+
+        <div class="logout">
+
+            <a href="/logout">
+
+                <button>Logout</button>
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
